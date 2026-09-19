@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Happy Two Month Anniversary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ivory: #fbf6ee;
+    --cream: #f6ecdc;
+    --beige: #e8d9c3;
+    --blush: #f1d9d3;
+    --rose: #b9808a;
+    --rose-deep: #a46671;
+    --burgundy: #6e2f3f;
+    --brown: #4a3329;
+    --brown-soft: #6f5548;
+    --gold: #c9a27a;
+    --display: "Cormorant Garamond", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    --body: "EB Garamond", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: var(--body);
+    color: var(--brown);
+    background:
+      radial-gradient(ellipse at 15% 0%, rgba(241, 217, 211, .75), transparent 55%),
+      radial-gradient(ellipse at 90% 30%, rgba(232, 217, 195, .8), transparent 55%),
+      radial-gradient(ellipse at 20% 85%, rgba(241, 217, 211, .55), transparent 55%),
+      linear-gradient(180deg, var(--ivory) 0%, var(--cream) 100%);
+    background-attachment: fixed;
+    overflow-x: hidden;
+  }
+
+  /* ---------- floating background ---------- */
+  #ambient {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+  }
+  .float {
+    position: absolute;
+    bottom: -40px;
+    opacity: 0;
+    color: var(--rose);
+    animation: drift linear infinite;
+    will-change: transform, opacity;
+  }
+  .float.dot {
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 244, 226, .95), rgba(201, 162, 122, 0) 70%);
+  }
+  @keyframes drift {
+    0%   { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 0; }
+    12%  { opacity: var(--o, .35); }
+    88%  { opacity: var(--o, .35); }
+    100% { transform: translate3d(var(--dx, 30px), -110vh, 0) rotate(40deg); opacity: 0; }
+  }
+
+  /* ---------- layout ---------- */
+  main {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: clamp(56px, 11vh, 110px) 22px 56px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  /* ---------- title ---------- */
+  h1 {
+    margin: 0;
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(2.4rem, 8.5vw, 4.6rem);
+    line-height: 1.08;
+    letter-spacing: .01em;
+    color: var(--burgundy);
+    animation: titleIn 1.6s cubic-bezier(.2, .7, .2, 1) both;
+  }
+  @keyframes titleIn {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .ornament {
+    margin: 18px 0 clamp(34px, 6vh, 52px);
+    font-size: 1.25rem;
+    color: var(--rose);
+    animation: titleIn 1.6s .5s cubic-bezier(.2, .7, .2, 1) both;
+  }
+
+  /* ---------- shared button base ---------- */
+  .btn {
+    font-family: var(--display);
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    color: #fff8f0;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform .35s ease, box-shadow .35s ease, background .5s ease;
+  }
+  .btn:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 4px;
+  }
+
+  /* READ: calm, letter-like */
+  .btn-read {
+    font-size: 1.35rem;
+    letter-spacing: .28em;
+    padding: 18px 58px 18px 62px;
+    min-height: 56px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--burgundy), #83404f);
+    box-shadow: 0 8px 20px rgba(110, 47, 63, .25), inset 0 1px 0 rgba(255, 255, 255, .15);
+  }
+  .btn-read:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(135deg, #7d3547, #96525f);
+    box-shadow: 0 14px 28px rgba(110, 47, 63, .3), inset 0 1px 0 rgba(255, 255, 255, .18);
+  }
+
+  /* POEM: dreamier, italic, dusty rose */
+  .btn-poem {
+    font-size: 1.3rem;
+    font-style: italic;
+    letter-spacing: .2em;
+    padding: 17px 52px 17px 56px;
+    min-height: 56px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--rose-deep), #c99aa0);
+    box-shadow: 0 8px 22px rgba(164, 102, 113, .28), inset 0 1px 0 rgba(255, 255, 255, .22);
+  }
+  .btn-poem:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(135deg, #b47780, #d5a9ae);
+    box-shadow: 0 14px 30px rgba(164, 102, 113, .34), inset 0 1px 0 rgba(255, 255, 255, .25);
+  }
+
+  /* CLICK ME: playful */
+  .btn-click {
+    position: relative;
+    font-size: 1.5rem;
+    letter-spacing: .16em;
+    padding: 20px 60px;
+    min-height: 62px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #c0707c, #d99a8f);
+    box-shadow: 0 8px 24px rgba(192, 112, 124, .35);
+    animation: bob 4.5s ease-in-out infinite, glow 3s ease-in-out infinite;
+  }
+  .btn-click:hover {
+    transform: translateY(-4px) scale(1.06);
+    background: linear-gradient(135deg, #cb7c87, #e3a89c);
+    animation-play-state: paused;
+    box-shadow: 0 16px 34px rgba(192, 112, 124, .45);
+  }
+  .btn-click:active { transform: scale(.97); }
+  .btn-click .spark {
+    position: absolute;
+    top: -6px;
+    right: 16px;
+    font-size: .95rem;
+    opacity: 0;
+    transform: translateY(6px) scale(.6);
+    transition: opacity .3s ease, transform .4s ease;
+    pointer-events: none;
+  }
+  .btn-click .spark.two { right: auto; left: 18px; top: auto; bottom: -8px; }
+  .btn-click:hover .spark { opacity: 1; transform: translateY(-4px) scale(1); }
+  @keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-5px); }
+  }
+  @keyframes glow {
+    0%, 100% { box-shadow: 0 8px 24px rgba(192, 112, 124, .35), 0 0 0 0 rgba(217, 154, 143, .35); }
+    50%      { box-shadow: 0 10px 28px rgba(192, 112, 124, .42), 0 0 0 14px rgba(217, 154, 143, 0); }
+  }
+
+  /* ---------- expandable panels ---------- */
+  .panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    width: 100%;
+    opacity: 0;
+    transition: grid-template-rows .85s cubic-bezier(.4, 0, .2, 1), opacity .7s ease, margin-top .85s cubic-bezier(.4, 0, .2, 1);
+    margin-top: 0;
+  }
+  .panel.open {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    margin-top: 34px;
+  }
+  .panel-inner { overflow: hidden; min-height: 0; }
+
+  /* letter card */
+  .letter {
+    text-align: left;
+    padding: clamp(30px, 6vw, 58px) clamp(24px, 6vw, 56px);
+    border-radius: 18px;
+    background:
+      linear-gradient(180deg, rgba(255, 252, 245, .96), rgba(250, 241, 224, .96));
+    border: 1px solid rgba(201, 162, 122, .35);
+    box-shadow: 0 18px 40px rgba(74, 51, 41, .13), 0 2px 6px rgba(74, 51, 41, .06);
+    position: relative;
+  }
+  .letter::before {
+    content: "";
+    position: absolute;
+    inset: 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(201, 162, 122, .28);
+    pointer-events: none;
+  }
+  .letter p {
+    margin: 0 0 1.9em;
+    font-size: clamp(1.13rem, 3.3vw, 1.32rem);
+    line-height: 1.85;
+    color: var(--brown);
+    overflow-wrap: break-word;
+  }
+  .letter p:last-child { margin-bottom: 0; }
+
+  /* poem card */
+  .poem-card {
+    padding: clamp(34px, 6vw, 58px) clamp(22px, 6vw, 52px);
+    border-radius: 120px 120px 22px 22px / 70px 70px 22px 22px;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, .55), transparent 60%),
+      linear-gradient(180deg, #f7e2dc 0%, #f2dcd2 55%, #efe0cc 100%);
+    border: 1px solid rgba(185, 128, 138, .3);
+    box-shadow: 0 20px 44px rgba(164, 102, 113, .18);
+    position: relative;
+  }
+  .poem-star {
+    display: block;
+    color: var(--gold);
+    letter-spacing: .7em;
+    font-size: .8rem;
+    margin-bottom: 26px;
+    padding-left: .7em;
+  }
+  .poem-star.bottom { margin: 26px 0 0; }
+  .stanza {
+    margin: 0 0 2em;
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(1.2rem, 3.9vw, 1.5rem);
+    line-height: 1.75;
+    color: var(--burgundy);
+    overflow-wrap: break-word;
+  }
+  .stanza:last-of-type { margin-bottom: 0; }
+
+  /* ---------- section spacing ---------- */
+  .block {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .gap { height: clamp(46px, 8vh, 74px); }
+
+  /* ---------- random statement ---------- */
+  .result-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    min-height: 0;
+    margin-top: 34px;
+  }
+  .result-wrap:empty { margin-top: 0; }
+  .statement {
+    width: 100%;
+    max-width: 480px;
+    padding: 26px 28px 28px;
+    border-radius: 20px;
+    background: linear-gradient(160deg, #fff7ee, #f8e4de);
+    border: 1px solid rgba(185, 128, 138, .28);
+    box-shadow: 0 12px 30px rgba(110, 47, 63, .14);
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  .statement.in {
+    animation: statementIn .7s cubic-bezier(.2, .7, .2, 1) forwards;
+  }
+  .statement.out {
+    animation: statementOut .28s ease forwards;
+  }
+  @keyframes statementIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes statementOut {
+    from { opacity: 1; transform: translateY(0); }
+    to   { opacity: 0; transform: translateY(-6px); }
+  }
+  .statement .mark { color: var(--rose); font-size: 1.1rem; display: block; margin-bottom: 12px; }
+  .statement .text {
+    margin: 0;
+    font-family: var(--display);
+    font-size: clamp(1.25rem, 4.2vw, 1.55rem);
+    line-height: 1.5;
+    font-weight: 500;
+    color: var(--burgundy);
+    overflow-wrap: break-word;
+  }
+
+  /* ---------- footer ---------- */
+  footer {
+    margin-top: clamp(56px, 10vh, 90px);
+    font-size: 1rem;
+    color: var(--rose);
+    opacity: .75;
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 520px) {
+    .btn-read  { padding: 17px 44px 17px 48px; font-size: 1.2rem; }
+    .btn-poem  { padding: 16px 40px 16px 44px; font-size: 1.15rem; }
+    .btn-click { padding: 19px 46px; font-size: 1.3rem; }
+    .poem-card { border-radius: 90px 90px 20px 20px / 54px 54px 20px 20px; }
+  }
+  @media (min-width: 900px) {
+    main { max-width: 720px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .float, .btn-click { animation: none !important; }
+    h1, .ornament { animation: none !important; }
+    .panel { transition-duration: .01s; }
+  }
+</style>
+</head>
+<body>
+
+<div id="ambient" aria-hidden="true"></div>
+
+<main>
+  <h1>Happy Two Month Anniversary</h1>
+  <div class="ornament" aria-hidden="true">♡</div>
+
+  <!-- SECTION 1 — READ -->
+  <section class="block" aria-label="Letter">
+    <button class="btn btn-read" id="readBtn" aria-expanded="false" aria-controls="letterPanel">READ</button>
+    <div class="panel" id="letterPanel">
+      <div class="panel-inner">
+        <article class="letter">
+          <p>Happy Two months my favourite girlfriend. I genuinely love you so so so so much it’s incomprehensible. Still, being a foolish man in love, I’ll try. I love you so much and I have so much trust and faith in us that I don’t find it crazy how it has already been 2 months. Time has passed, people have commented, pasts have unfolded, and we still have not had a proper fight yet. How perfect can two people be so perfect for each other??! It’s so incredible how I have you and I don’t want anything else. Nothing but you, forever.</p>
+          <p>It feels like my search is over. The time I had walked and explored tirelessly with my weak legs is over, as if someone’s here to be my resting place. What I feel for you can’t be replicated and what I would do for you can’t be executed. My love for you surpasses barriers set by myself to keep myself safe, yet I feel nothing but protected by you. Life has its own way of knocking me down more times than I have counted, but ever since we have been together you have acted as a shield and have protected me in your warm arms.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="gap"></div>
+
+  <!-- SECTION 2 — THE POEM -->
+  <section class="block" aria-label="Poem">
+    <button class="btn btn-poem" id="poemBtn" aria-expanded="false" aria-controls="poemPanel">THE POEM</button>
+    <div class="panel" id="poemPanel">
+      <div class="panel-inner">
+        <article class="poem-card">
+          <span class="poem-star" aria-hidden="true">✦ ✧ ✦</span>
+          <p class="stanza">I crave nothing but your touch,<br>For I can boast and you can vouch.<br>Boast about how the golden touch can feel,<br>A feeling that even the gods can’t reveal.</p>
+          <p class="stanza">I couldn’t ask for more,<br>nor do I want to.<br>Cause the best is nothing but you,<br>And if there is, I'd much rather be with you.</p>
+          <p class="stanza">There’s nothing more I could ask,<br>Because loving you is never a task.<br>My love extends much farther than what anybody sees,<br>Happy two months, the answer to all my dreams.</p>
+          <span class="poem-star bottom" aria-hidden="true">✿</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="gap"></div>
+
+  <!-- SECTION 3 — CLICK ME -->
+  <section class="block" aria-label="Surprise">
+    <button class="btn btn-click" id="clickBtn">
+      <span class="spark" aria-hidden="true">♡</span>
+      CLICK ME
+      <span class="spark two" aria-hidden="true">♡</span>
+    </button>
+    <div class="result-wrap" id="result" aria-live="polite"></div>
+  </section>
+
+  <footer aria-hidden="true">♡</footer>
+</main>
+
+<script>
+  /* ---------- expandable panels ---------- */
+  function wireToggle(btnId, panelId) {
+    var btn = document.getElementById(btnId);
+    var panel = document.getElementById(panelId);
+    btn.addEventListener('click', function () {
+      var open = panel.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  }
+  wireToggle('readBtn', 'letterPanel');
+  wireToggle('poemBtn', 'poemPanel');
+
+  /* ---------- the 34 random statements ----------
+     Paste each of your lines between the quotes, in order.
+     Keep all 34 entries (duplicates included). The song each one
+     belongs to is noted in the comment beside it.                 */
+  var statements = [
+    "PASTE LINE 1 HERE",   // 1  — Summertime Sadness
+    "PASTE LINE 2 HERE",   // 2  — Summertime Sadness (with attribution)
+    "PASTE LINE 3 HERE",   // 3  — Young and Beautiful (with attribution)
+    "PASTE LINE 4 HERE",   // 4  — Get Free (with attribution)
+    "PASTE LINE 5 HERE",   // 5  — In My Feelings (with attribution)
+    "PASTE LINE 6 HERE",   // 6  — Radio (with attribution)
+    "PASTE LINE 7 HERE",   // 7  — Young and Beautiful (with attribution)
+    "PASTE LINE 8 HERE",   // 8  — Cinnamon Girl (with attribution)
+    "PASTE LINE 9 HERE",   // 9  — Young and Beautiful
+    "PASTE LINE 10 HERE",  // 10 — Video Games
+    "PASTE LINE 11 HERE",  // 11 — Blue Jeans
+    "PASTE LINE 12 HERE",  // 12 — West Coast
+    "PASTE LINE 13 HERE",  // 13 — Video Games
+    "PASTE LINE 14 HERE",  // 14 — Religion
+    "PASTE LINE 15 HERE",  // 15 — Lana Del Rey
+    "PASTE LINE 16 HERE",  // 16 — Young and Beautiful
+    "PASTE LINE 17 HERE",  // 17 — Video Games
+    "PASTE LINE 18 HERE",  // 18 — West Coast
+    "PASTE LINE 19 HERE",  // 19 — Once Upon a Dream
+    "PASTE LINE 20 HERE",  // 20 — Young and Beautiful
+    "PASTE LINE 21 HERE",  // 21 — Video Games
+    "PASTE LINE 22 HERE",  // 22 — West Coast
+    "PASTE LINE 23 HERE",  // 23 — Once Upon a Dream
+    "PASTE LINE 24 HERE",  // 24 — Lana Del Rey
+    "PASTE LINE 25 HERE",  // 25 — Video Games
+    "PASTE LINE 26 HERE",  // 26 — Young and Beautiful
+    "PASTE LINE 27 HERE",  // 27 — Love
+    "PASTE LINE 28 HERE",  // 28 — Diet Mountain Dew
+    "PASTE LINE 29 HERE",  // 29 — Summertime Sadness
+    "PASTE LINE 30 HERE",  // 30 — Off to the Races
+    "PASTE LINE 31 HERE",  // 31 — National Anthem
+    "PASTE LINE 32 HERE",  // 32 — Ride
+    "PASTE LINE 33 HERE",  // 33 — Summertime Sadness
+    "PASTE LINE 34 HERE"   // 34 — Summertime Sadness
+  ];
+
+  /* ---------- CLICK ME ---------- */
+  var result = document.getElementById('result');
+  var clickBtn = document.getElementById('clickBtn');
+  var swapTimer = null;
+
+  function buildCard(text) {
+    var card = document.createElement('div');
+    card.className = 'statement';
+    var mark = document.createElement('span');
+    mark.className = 'mark';
+    mark.setAttribute('aria-hidden', 'true');
+    mark.textContent = '♡';
+    var p = document.createElement('p');
+    p.className = 'text';
+    p.textContent = text;
+    card.appendChild(mark);
+    card.appendChild(p);
+    return card;
+  }
+
+  function showRandom() {
+    // truly random every time: repeats allowed, never sequential, never exhausted
+    var pick = statements[Math.floor(Math.random() * statements.length)];
+    var old = result.firstElementChild;
+
+    if (swapTimer) { clearTimeout(swapTimer); swapTimer = null; }
+
+    function place() {
+      result.innerHTML = '';
+      var card = buildCard(pick);
+      result.appendChild(card);
+      void card.offsetWidth;          // restart animation
+      card.classList.add('in');
+    }
+
+    if (old) {
+      old.classList.remove('in');
+      old.classList.add('out');
+      swapTimer = setTimeout(place, 280);
+    } else {
+      place();
+    }
+  }
+  clickBtn.addEventListener('click', showRandom);
+
+  /* ---------- ambient background ---------- */
+  (function ambient() {
+    var host = document.getElementById('ambient');
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return;
+    var count = window.innerWidth < 600 ? 12 : 20;
+    var glyphs = ['♡', '✦', '·'];
+    for (var i = 0; i < count; i++) {
+      var el = document.createElement('span');
+      var isDot = Math.random() < .45;
+      el.className = 'float' + (isDot ? ' dot' : '');
+      var size = isDot ? (6 + Math.random() * 10) : (10 + Math.random() * 10);
+      el.style.left = (Math.random() * 100) + 'vw';
+      el.style.animationDuration = (32 + Math.random() * 40) + 's';
+      el.style.animationDelay = (-Math.random() * 60) + 's';
+      el.style.setProperty('--dx', ((Math.random() - .5) * 90) + 'px');
+      el.style.setProperty('--o', (.18 + Math.random() * .22).toFixed(2));
+      if (isDot) {
+        el.style.width = size + 'px';
+        el.style.height = size + 'px';
+      } else {
+        el.style.fontSize = size + 'px';
+        el.textContent = glyphs[Math.floor(Math.random() * 2)];
+      }
+      host.appendChild(el);
+    }
+  })();
+</script>
+</body>
+</html>
